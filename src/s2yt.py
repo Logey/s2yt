@@ -21,8 +21,9 @@ status = zroya.init(
 template = zroya.Template(zroya.TemplateType.ImageAndText4)
 template.setExpiration(1000)
 
-songIDIndex = template.addAction("Copy Song ID")
-songURLIndex = template.addAction("Copy Song URL")
+songIDIndex = template.addAction("Copy ID")
+songURLIndex = template.addAction("Copy URL")
+songName = template.addAction("Copy Track")
 
 def onAction(notificationID, actionID):
 	# get song id for matching notification id
@@ -38,15 +39,18 @@ def onAction(notificationID, actionID):
     return pyperclip.copy(notification["songID"])
   if actionID == 1: # song url
     return pyperclip.copy("https://youtube.com/watch?v=%s" % notification["songID"])
+  if actionID == 2: # song name
+    return pyperclip.copy(notification["fullName"])
 
 notifications = []
-def notify(songID):
+def notify(songID, fullName):
   notificationID = zroya.show(template, on_action=onAction)
   if (len(notifications) > 10):
     notifications.pop(0)
   notifications.append({
     "notificationID": notificationID,
-    "songID": songID
+    "songID": songID,
+    "fullName": fullName
   })
 
 def ytDurationToMS(duration):
@@ -152,6 +156,6 @@ while True:
 
       template.setFirstLine(fullSong)
       template.setSecondLine(closest["name"])
-      notify(closest["id"])
+      notify(closest["id"], fullSong)
 
   time.sleep(0.1)

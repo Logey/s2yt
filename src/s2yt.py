@@ -1,4 +1,4 @@
-import time, pyperclip, spotipy, re
+import time, pyperclip, spotipy, re, zroya
 import Levenshtein as lev
 from youtubesearchpython import VideosSearch
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -9,6 +9,45 @@ from config import EXCLUSIONS, MAX_DISTANCE
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
 
 latestValue = ""
+
+status = zroya.init(
+  app_name="s2yt",
+  company_name="s2yt",
+  product_name="s2yt",
+  sub_product="s2yt",
+  version="s2yt"
+)
+
+template = zroya.Template(zroya.TemplateType.ImageAndText4)
+template.setExpiration(3000)
+
+songIDIndex = template.addAction("Copy Song ID")
+songURLIndex = template.addAction("Copy Song URL")
+
+def onAction(notificationID, actionID):
+	# get song id for matching notification id
+  notification = None
+  for n in notifications:
+    if n["notificationID"] == notificationID:
+      notification = n
+      break
+
+  if notification == None: return
+
+  if actionID == 0: # song ID
+    return pyperclip.copy(notification["songID"])
+  if actionID == 1: # song url
+    return pyperclip.copy("https://youtube.com/watch?v=%s" % notification["songID"])
+
+notifications = []
+def notify(songID):
+  notificationID = zroya.show(template, on_action=onAction)
+  if (len(notifications) > 10):
+    notifications.pop(0)
+  notifications.append({
+    "notificationID": notificationID,
+    "songID": songID
+  })
 
 def ytDurationToMS(duration):
   durationSplit = duration.split(":")
@@ -107,5 +146,12 @@ while True:
         getClosest(fullSongBeforeBracket, trackNameBeforeBracket)
 
       print(closest)
+
+      # skip notification if no video found
+      if closest["id"] == None: continue
+
+      template.setFirstLine(artist)
+      template.setSecondLine(trackName)
+      notify(closest["id"])
 
   time.sleep(0.1)

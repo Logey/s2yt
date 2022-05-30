@@ -8,6 +8,7 @@ pyperclip = "*"
 spotipy = "*"
 levenshtein = "*"
 youtube-search-python = "*"
+zroya = "*"
 
 [dev-packages]
 

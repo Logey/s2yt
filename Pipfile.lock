@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1788eae2c1d9d300ca33502bd37747f9a5c301482357f6ea6c409b45ebcd75fe"
+            "sha256": "f7a459e82ba93bbbd6e3e440ed8dfcd21e9760d0a50a31c9d5216552bf977c22"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -334,6 +334,14 @@
             ],
             "index": "pypi",
             "version": "==1.6.5"
+        },
+        "zroya": {
+            "hashes": [
+                "sha256:e8959ec51987598b4adc1c9db5722aa60a8d663971e5ab371be74a9bdb9dea5c",
+                "sha256:f972adebfda76b5558576996974939277e38f7b7966933782a9798e0d8b2ad29"
+            ],
+            "index": "pypi",
+            "version": "==0.2.4"
         }
     },
     "develop": {}

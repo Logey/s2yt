@@ -16,3 +16,4 @@ sniffio==1.2.0
 spotipy==2.19.0
 urllib3==1.26.9
 youtube-search-python==1.6.5
+zroya==0.2.4

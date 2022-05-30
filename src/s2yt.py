@@ -19,7 +19,7 @@ status = zroya.init(
 )
 
 template = zroya.Template(zroya.TemplateType.ImageAndText4)
-template.setExpiration(3000)
+template.setExpiration(1000)
 
 songIDIndex = template.addAction("Copy Song ID")
 songURLIndex = template.addAction("Copy Song URL")
@@ -150,8 +150,8 @@ while True:
       # skip notification if no video found
       if closest["id"] == None: continue
 
-      template.setFirstLine(artist)
-      template.setSecondLine(trackName)
+      template.setFirstLine(fullSong)
+      template.setSecondLine(closest["name"])
       notify(closest["id"])
 
   time.sleep(0.1)

@@ -2,7 +2,7 @@
 # if the song or artist name includes this string, it will not be ignored
 EXCLUSIONS = [
   # no lyrics / instrumental version
-  "karaoke", "instrumental", "acoustic",
+  "karaoke", "instrumental", "acoustic", "a capella",
 
   # unintended remixes
   "nightcore", "remix", "bootleg",

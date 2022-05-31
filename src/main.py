@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
       # print(json.dumps(scoredVideos, indent=2))
       print(highest)
-      notify(highest["id"], track["name"], highest["title"])
+      notify(highest["id"], searchQuery, highest["title"])
 
     # sleep for user-specified time between clipboard checks
     time.sleep(CLIPBOARD_CHECK_FREQUENCY)

@@ -51,9 +51,9 @@ def action(notificationID, actionIndex):
   if actionIndex == 2: # song name
     return clipboard.saveToClipboard(notification["fullName"])
 
-def notify(songID, trackName, videoTitle):
+def notify(songID, fullName, videoTitle):
   # set notification text
-  template.setFirstLine(trackName)
+  template.setFirstLine(fullName)
   template.setSecondLine(videoTitle)
 
   # remove oldest notification if above limit
@@ -67,5 +67,5 @@ def notify(songID, trackName, videoTitle):
   notifications.append({
     "notificationID": notificationID,
     "songID": songID,
-    "trackName": trackName
+    "fullName": fullName
   })

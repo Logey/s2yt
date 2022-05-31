@@ -14,7 +14,7 @@ EXCLUSIONS = [
   "clean",
 
   # covers
-  "cover",
+  "cover", "home free",
 
   # live / concert recordings
   "live", "concert", "austin city limits", "perform"

@@ -8,7 +8,10 @@ IGNORED_TERMS = [
   "episode",
 
   # top 10 videos
-  "top 10"
+  "top 10",
+
+  # fan edits / filters
+  "8d audio"
 ]
 
 # number of milliseconds for the notification to stay in windows action center

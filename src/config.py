@@ -17,7 +17,7 @@ EXCLUSIONS = [
   "cover", "home free",
 
   # live / concert recordings
-  "live", "concert", "austin city limits", "perform",
+  "live", "concert", "austin city limits", "perform", "sxsw"
 
   # rhythm game gameplay videos
   "osu", "clonehero", "clone hero", "chart"

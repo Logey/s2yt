@@ -4,9 +4,9 @@ import Levenshtein as lev
 
 from util.video import videoLengthToMS
 
-from config import (MS_DEDUCT, TERMS_POINTS_NEGATIVE, TITLE_CONTAINS_SONG_NAME_POINTS, TITLE_IS_TRACK_BACKWARDS_POINTS,
-  TITLE_IS_TRACK_NAME_POINTS, TITLE_IS_SONG_NAME_POINTS, TERMS_POINTS_POSITIVE, DISTANCE_DEDUCT,
-  ARTIST_IN_CHANNEL_NAME_POINTS, VIEW_WEIGHT)
+from config import (MS_DEDUCT, TERMS_POINTS_NEGATIVE, TITLE_CONTAINS_ARTIST_NAME_POINTS, TITLE_CONTAINS_SONG_NAME_POINTS,
+  TITLE_IS_TRACK_BACKWARDS_POINTS, TITLE_IS_TRACK_NAME_POINTS, TITLE_IS_SONG_NAME_POINTS, TERMS_POINTS_POSITIVE,
+  DISTANCE_DEDUCT, ARTIST_IN_CHANNEL_NAME_POINTS, VIEW_WEIGHT)
 
 def getBarebones(text):
   return re.sub(r"[^.a-zA-Z\d]", "", text)
@@ -37,6 +37,7 @@ def getVideoScore(searchQuery, track, video):
     score = TITLE_IS_TRACK_BACKWARDS_POINTS
 
   # if not exact match, check preferred terms and distance
+  bbArtist = getBarebones(track["artists"][0]["name"].lower())
   if score == 0:
     # set base score based on preferred terms
     for term, points in TERMS_POINTS_POSITIVE.items():
@@ -55,6 +56,10 @@ def getVideoScore(searchQuery, track, video):
     if bbSongName in bbVideoTitle:
       score += TITLE_CONTAINS_SONG_NAME_POINTS
 
+    # add points if video title contains artist name
+    if bbArtist in bbVideoTitle:
+      score += TITLE_CONTAINS_ARTIST_NAME_POINTS
+
     # deduct points based on distance
     distanceSQ = getDistance(bbSearchQuery, bbVideoTitle, False)
     distanceN = getDistance(bbSongName, bbVideoTitle, False)
@@ -69,7 +74,6 @@ def getVideoScore(searchQuery, track, video):
   score -= floor(diff / MS_DEDUCT)
 
   # add points if artist in channel name
-  bbArtist = getBarebones(track["artists"][0]["name"].lower())
   bbChannel = getBarebones(video["channel"]["name"].lower())
   if bbArtist in bbChannel:
     score += ARTIST_IN_CHANNEL_NAME_POINTS

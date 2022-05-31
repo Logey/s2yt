@@ -29,6 +29,9 @@ TITLE_IS_SONG_NAME_POINTS = 100
 # points to reward for video title containing the song name
 TITLE_CONTAINS_SONG_NAME_POINTS = 50
 
+# points to reward for video title containing the artist name
+TITLE_CONTAINS_ARTIST_NAME_POINTS = 50
+
 # points to reward for video title being exact "artist - song" name
 TITLE_IS_TRACK_NAME_POINTS = 120
 

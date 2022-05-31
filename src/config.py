@@ -19,7 +19,7 @@ EXCLUSIONS = [
   # live / concert recordings
   "live", "concert", "austin city limits", "perform",
 
-  # gameplay videos
+  # rhythm game gameplay videos
   "osu", "clonehero", "clone hero", "chart"
 ]
 

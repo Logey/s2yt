@@ -17,7 +17,7 @@ EXCLUSIONS = [
   "cover",
 
   # live / concert recordings
-  "live", "concert", "austin city limits"
+  "live", "concert", "austin city limits", "perform"
 ]
 
 # maximum distance to accept if the song name is not found in the video title

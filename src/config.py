@@ -70,9 +70,6 @@ DISTANCE_DEDUCT = 5
 # how many milliseconds difference to deduct 1 point
 MS_DEDUCT = 2500
 
-# should it take views into account?
-SHOULD_SCORE_FOR_VIEWS = False
-
 # how much should view count affect scores?
 VIEW_WEIGHT = 2
 

@@ -6,7 +6,7 @@ from util.video import videoLengthToMS
 
 from config import (MS_DEDUCT, TERMS_POINTS_NEGATIVE, TITLE_CONTAINS_ARTIST_NAME_POINTS, TITLE_CONTAINS_SONG_NAME_POINTS,
   TITLE_IS_TRACK_BACKWARDS_POINTS, TITLE_IS_TRACK_NAME_POINTS, TITLE_IS_SONG_NAME_POINTS, TERMS_POINTS_POSITIVE,
-  DISTANCE_DEDUCT, ARTIST_IN_CHANNEL_NAME_POINTS, VIEW_WEIGHT)
+  DISTANCE_DEDUCT, ARTIST_IN_CHANNEL_NAME_POINTS, VIEW_WEIGHT, TITLE_CONTAINS_ALBUM_NAME_POINTS)
 
 def getBarebones(text):
   return re.sub(r"[^.a-zA-Z\d]", "", text)
@@ -77,6 +77,11 @@ def getVideoScore(searchQuery, track, video):
   bbChannel = getBarebones(video["channel"]["name"].lower())
   if bbArtist in bbChannel:
     score += ARTIST_IN_CHANNEL_NAME_POINTS
+
+  # add points if album in video title
+  bbAlbum = getBarebones(track["album"]["name"])
+  if bbAlbum in bbVideoTitle:
+    score += TITLE_CONTAINS_ALBUM_NAME_POINTS
 
   return score
 

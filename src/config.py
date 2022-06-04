@@ -41,6 +41,9 @@ TITLE_IS_TRACK_NAME_POINTS = 120
 # if the video title is "song name - artist"
 TITLE_IS_TRACK_BACKWARDS_POINTS = 100
 
+# if the video title contains the album name
+TITLE_CONTAINS_ALBUM_NAME_POINTS = 150
+
 # how many points to reward certain search terms (case INsensitive)
 # the video with the highest points is chosen
 TERMS_POINTS_POSITIVE = {
@@ -51,6 +54,7 @@ TERMS_POINTS_POSITIVE = {
   "legendado": 65, # spanish lyric video
   "official music video": 60,
   "music video": 50,
+  "original": 40,
   "explicit": 10 # uncensored
 }
 
@@ -74,4 +78,4 @@ MS_DEDUCT = 2500
 VIEW_WEIGHT = 2
 
 # how many points to reward if the artist name is in the channel name
-ARTIST_IN_CHANNEL_NAME_POINTS = 10
+ARTIST_IN_CHANNEL_NAME_POINTS = 50
